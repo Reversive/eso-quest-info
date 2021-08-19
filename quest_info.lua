@@ -19,7 +19,7 @@ function QuestInfo.DrawCall(event, ticks)
 		QuestInfo.GUI.visible, QuestInfo.GUI.open = GUI:Begin("QuestInfo", QuestInfo.GUI.open)
 		if ( QuestInfo.GUI.visible ) then
             local game_state = GetGameState()
-            if ( GUI:TreeNode("Zone Quests") ) then
+            if ( GUI:TreeNode("Zone Quests - " .. e("GetPlayerActiveZoneName()")) ) then
                 if( game_state == 3 ) then
                     local zone_quests = QuestLib.GetZoneQuests()
                     for _, quest in pairs(zone_quests) do
