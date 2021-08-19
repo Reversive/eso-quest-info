@@ -25,7 +25,7 @@ function QuestInfo.DrawCall(event, ticks)
                     for _, quest in pairs(zone_quests) do
                         local qid = QuestLib.GetQuestId(quest)
                         local qname = QuestLib.GetQuestName(qid)
-                        if ( not QuestLib.IsQuestComplete(qid) and GUI:TreeNode(tostring(qid) .. " - " .. qname) ) then
+                        if ( not QuestLib.IsQuestComplete(qid, true) and GUI:TreeNode(tostring(qid) .. " - " .. qname) ) then
                             GUI:BulletText(".id = ".. qid)
                             GUI:BulletText(".name = ".. qname)
                             GUI:BulletText(".giver = ".. QuestLib.GetQuestGiverName(quest))
