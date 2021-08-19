@@ -1,6 +1,8 @@
 local utils = _G["QuestLibUtils"]
 local internal = _G["QuestLibInternal"]
 
+utils.measurements = {}
+
 utils.quest_index  = {
     local_x = 1, 
     local_y = 2, 
@@ -96,4 +98,41 @@ function utils:DeepTableCopy(source, dest)
     end
     
     return dest
+end
+
+
+function utils:GetZoneMeasurement()
+    local zone = e("GetPlayerActiveZoneName()")
+	if utils.measurements[zone] then
+        return utils.measurements[zone][1], utils.measurements[zone][2], utils.measurements[zone][3]
+    end
+	e("SetMapToMapListIndex(1)")
+	local centerX, _, centerY = e("GuiRender3DPositionToWorldPosition(0,0,0)")
+    local stepX = centerX - 125000
+    local stepY = centerY - 125000
+	local success = e("SetPlayerWaypointByWorldLocation(" .. tostring(stepX) .. ",0," .. tostring(stepY) .. ")")
+	if success then
+		local firstX, firstY = e("GetMapPlayerWaypoint()")
+        local step2X = centerX + 125000
+        local step2Y = centerY + 125000
+		success = e("SetPlayerWaypointByWorldLocation(" .. tostring(step2X) .. ",0," .. tostring(step2Y) .. ")")
+		if success then
+			local secondX, secondY = e("GetMapPlayerWaypoint()")
+			if firstX ~= secondX and firstY ~= secondY then
+				local currentGlobalToWorldFactor = 2 * 2500 / (secondX - firstX + secondY - firstY)
+				local currentOriginGlobalX = (firstX + secondX) * 0.5 - centerX * 0.01 / currentGlobalToWorldFactor
+				local currentOriginGlobalY = (firstY + secondY) * 0.5 - centerY * 0.01 / currentGlobalToWorldFactor
+                utils.measurements[zone] = {currentGlobalToWorldFactor, currentOriginGlobalX, currentOriginGlobalY}
+                return currentGlobalToWorldFactor, currentOriginGlobalX, currentOriginGlobalY
+			end
+		end
+	end
+end
+
+
+function utils:GlobalToWorld(globalX, globalY)
+    local globalToWorldFactor, originGlobalX, originGlobalY = utils:GetZoneMeasurement()
+	local worldX = (globalX - originGlobalX) * globalToWorldFactor
+	local worldZ = (globalY - originGlobalY) * globalToWorldFactor
+	return worldX, worldZ
 end

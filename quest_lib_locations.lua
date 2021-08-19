@@ -41033,19 +41033,13 @@ function RemoveDuplicates(t)
     end
     return unique
 end
-function internal:GetZoneQuests()
-    local current_zone = string.lower(e("GetPlayerActiveZoneName()"))
-    current_zone = string.gsub(current_zone, "%s+", "")
-    local i = 1
-    for zone_name, quest_table in pairs(internal.quest_locations) do
-        if(string.find(zone_name, current_zone)) then
-            for _, quest_info in pairs(quest_table) do
-                internal.zone_quests[i] = quest_info
-                i = i + 1
-            end
-        end
+function internal:GetZoneQuests(zone)
+    
+    if type(zone) == "string" and internal.quest_locations[zone] ~= nil then
+        return utils:DeepTableCopy(internal.quest_locations[zone])
+    else
+        return {}
     end
-    return RemoveDuplicates(internal.zone_quests)
 end
 
 function internal:GetQuestsZoneNames(zone)

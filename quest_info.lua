@@ -10,6 +10,7 @@ function QuestInfo.ModuleInit()
                                 name = "QuestInfo", onClick = function() QuestInfo.GUI.open = not QuestInfo.GUI.open end, 
                                 tooltip = "Open the QuestInfo addon."},
                                 "ESOMINION##MENU_HEADER")
+    QuestLib.GetZoneMeasurement()
 end
 
 function QuestInfo.DrawCall(event, ticks)
@@ -30,9 +31,9 @@ function QuestInfo.DrawCall(event, ticks)
                             GUI:BulletText(".name = ".. qname)
                             GUI:BulletText(".giver = ".. QuestLib.GetQuestGiverName(quest))
                             GUI:BulletText(".giver_id = ".. QuestLib.GetQuestGiverId(quest))
-                            local global_x, global_y = QuestLib.GetQuestGlobalPosition(quest)
-                            GUI:BulletText(".global_x = ".. global_x)
-                            GUI:BulletText(".global_y = ".. global_y)
+                            local global_x, global_z = QuestLib.GetQuestGlobalPosition(quest)
+                            GUI:BulletText(".x = ".. global_x)
+                            GUI:BulletText(".z = ".. global_z)
                             GUI:TreePop()
                         end
                     end

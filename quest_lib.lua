@@ -79,9 +79,13 @@ function QuestLib.GetQuestId(quest)
 end
 
 function QuestLib.GetQuestGlobalPosition(quest)
-	return quest[utils.quest_index.global_x],quest[utils.quest_index.global_y]
+	return utils:GlobalToWorld(quest[utils.quest_index.global_x],quest[utils.quest_index.global_y])
 end
 
 function QuestLib.GetZoneQuests()
 	return internal:GetZoneQuests()
+end
+
+function QuestLib.GetZoneMeasurement()
+	return utils:GetZoneMeasurement()
 end
