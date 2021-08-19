@@ -1,5 +1,5 @@
 # eso-quest-info
-Quest info addon to showcase QuestLib
+Quest info addon to showcase QuestLib, shows all non-completed quests of your current active zone (map).
 
 ![preview](https://i.imgur.com/5WtNEq1.png)
 
@@ -30,3 +30,4 @@ Returns a table of completed quests (table format is t[id] = title or t[title] =
 # TO-DO
 - Remove force params by registering game events (the idea would be to refresh the cache on EVENT_QUEST_COMPLETE event, so just need to register a handler to that...)
 - Add more quest info (steps, conditions?)
+- Quest tracking (?)
