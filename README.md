@@ -18,6 +18,6 @@ Returns a boolean telling you if you completed the provided quest, force param o
 `QuestLib.GetCompletedQuests(force)`
 Returns a table of completed quests (table format is t[id] = title or t[title] = id)
 
-# eso-quest-info
+# TO-DO
 - Remove force params by registering game events (just refresh the cache on EVENT_QUEST_COMPLETE event)
 - Add more quest info (normalized x/y positions are available in the table but need to find a way to convert them to 3d world pos somehow)
