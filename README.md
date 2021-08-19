@@ -16,7 +16,7 @@ Returns quest giver name
 Returns quest giver id
 
 `QuestLib.GetQuestGlobalPosition(quest_entry)`
-Returns x,y quest global position (do not confuse this with world position, still need to find a way to reliable convert from global to world which at first seems impossible since its a normalized vector so we would never be able to get the Y axis aka height)
+Returns x,y quest world position
 
 `QuestLib.GetQuestName(quest_id)`
 Returns the quest name based on the quest id (use it in pair with GetZoneQuests)
