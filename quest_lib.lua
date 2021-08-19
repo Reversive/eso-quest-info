@@ -64,10 +64,23 @@ function QuestLib.GetQuestName(quest_id)
 	return utils:GetQuestName(quest_id)
 end
 
+function QuestLib.GetQuestGiverId(quest)
+	return quest[utils.quest_index.quest_giver]
+end
+
+function QuestLib.GetQuestGiverName(quest)
+	local giver = internal.quest_givers[QuestLib.GetQuestGiverId(quest)]
+	if not giver then return "Unknown" end
+	return giver
+end
+
 function QuestLib.GetQuestId(quest)
 	return quest[utils.quest_index.quest_id]
 end
 
+function QuestLib.GetQuestGlobalPosition(quest)
+	return quest[utils.quest_index.global_x],quest[utils.quest_index.global_y]
+end
 
 function QuestLib.GetZoneQuests()
 	return internal:GetZoneQuests()

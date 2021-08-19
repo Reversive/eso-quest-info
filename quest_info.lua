@@ -26,6 +26,13 @@ function QuestInfo.DrawCall(event, ticks)
                         local qid = QuestLib.GetQuestId(quest)
                         local qname = QuestLib.GetQuestName(qid)
                         if ( not QuestLib.IsQuestComplete(qid) and GUI:TreeNode(tostring(qid) .. " - " .. qname) ) then
+                            GUI:BulletText(".id = ".. qid)
+                            GUI:BulletText(".name = ".. qname)
+                            GUI:BulletText(".giver = ".. QuestLib.GetQuestGiverName(quest))
+                            GUI:BulletText(".giver_id = ".. QuestLib.GetQuestGiverId(quest))
+                            local global_x, global_y = QuestLib.GetQuestGlobalPosition(quest)
+                            GUI:BulletText(".global_x = ".. global_x)
+                            GUI:BulletText(".global_y = ".. global_y)
                             GUI:TreePop()
                         end
                     end
