@@ -1,7 +1,7 @@
 # eso-quest-info
 Quest info addon to showcase QuestLib, shows all non-completed quests of your current active zone (map).
 
-![preview](https://i.imgur.com/5WtNEq1.png)
+![preview](https://i.imgur.com/nbOiRHY.png)
 
 `QuestLib.GetZoneQuests()`
 Returns a table of quests based on the current zone.
